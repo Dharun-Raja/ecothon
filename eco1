@@ -1,0 +1,54 @@
+import random
+
+class Ecosystem:
+    def __init__(self):
+        self.year = 1
+        self.population = 100
+        self.resources = 100
+        self.game_over = False
+
+    def display_status(self):
+        print(f"Year: {self.year}")
+        print(f"Population: {self.population}")
+        print(f"Resources: {self.resources}")
+
+    def take_action(self):
+        print("Choose an action:")
+        print("1. Harvest resources")
+        print("2. Implement conservation measures")
+        action = input("Enter the number of your choice: ")
+
+        if action == '1':
+            self.harvest_resources()
+        elif action == '2':
+            self.implement_conservation()
+        else:
+            print("Invalid choice. Try again.")
+
+    def harvest_resources(self):
+        harvested = random.randint(10, 30)
+        self.resources += harvested
+        self.population += random.randint(1, 10)
+        self.year += 1
+
+    def implement_conservation(self):
+        self.population -= random.randint(1, 10)
+        self.resources += random.randint(5, 15)
+        self.year += 1
+
+    def check_game_over(self):
+        if self.population <= 0 or self.resources <= 0:
+            self.game_over = True
+
+    def play(self):
+        print("Welcome to Ecosaver - The Ecological Simulation Game")
+        while not self.game_over:
+            self.display_status()
+            self.take_action()
+            self.check_game_over()
+
+        print("Game over!")
+
+if __name__ == "__main__":
+    game = Ecosystem()
+    game.play()
